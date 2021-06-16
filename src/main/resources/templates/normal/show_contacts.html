@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+	integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+
+</head>
+<body>
+	<section>
+
+		<div class="container mt-1">
+			<div class="card  mr-3 ml-3">
+		
+			<div class="card-body">
+			
+				<h1 class="text-center">Your Contacts</h1>
+				
+				<!-- Search Feild -->
+				<div class="search-container my-1">
+					
+					<input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Search Contacts"/>
+					
+					<div class="search-result">
+						
+						
+						
+					</div>
+				
+				</div>
+
+				<table class="table card-table table-hover"  style="overflow-y: auto; overflow-x: auto;">
+					<thead>
+						<tr>
+							<th scope="col">@ID</th>
+							<th scope="col">Name</th>
+							<th scope="col">Email</th>
+							<th scope="col">Phone</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr th:each="c : ${contacts}">
+							<th scope="row"  th:text="${'CID'+c.cid}">1</th>
+							
+							<td>
+							<img src="" class="my_profile_picture" th:src="@{'/img/'+${c.image}}" />
+							<span th:text="${c.name}"></span></td>
+							
+							<td>
+								<a href="#" th:href="@{'/user/contact/'+${c.cid}}">
+									<span th:text="${c.email}"></span>
+								</a>
+							</td>
+							
+							<td th:text="${c.phone}">@mdo</td>
+							<td>
+							
+								<a href="#" th:onclick="|deleteContact(${c.cid})|"  class="btn btn-danger btn-sm fas fa-trash-alt"></a>
+								
+								<form class="form-inline" method="post" th:action="@{'/user/update-contact/'+${c.cid}}">
+									
+									<button type="submit" class="btn btn-secondary btn-sm fas fa-edit"></button>
+								</form>
+							
+							</td>
+						</tr>
+						
+						
+					</tbody>
+				</table>
+
+				<!-- Pagination -->
+
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li th:if="${currentPage != 0 }" class="page-item"><a
+							th:href="@{'/user/show-contacts/'+${currentPage-1}}"
+							class="page-link" href="#" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
+						</a></li>
+						<li th:classappend="${currentPage==i-1?'active':''}"
+							th:each="i : ${#numbers.sequence(1,totalPages)}"
+							class="page-item"><a
+							th:href="@{'/user/show-contacts/'+${i-1}}" class="page-link"
+							href="#"><span th:text="${i}"></span></a></li>
+
+						<li th:if="${currentPage+1 != totalPages}" class="page-item"><a
+							th:href="@{'/user/show-contacts/'+${currentPage+1}}"
+							class="page-link" href="#" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+						</a></li>
+					</ul>
+				</nav>
+
+			</div>
+		
+		</div>
+		</div>
+		
+		<!-- Search Js code -->
+		<script type="text/javascript">
+		
+		const search = () => {
+
+		    let query = $("#search-input").val();
+		    console.log(query);
+
+		    if(query == '')
+		    {
+		        $(".search-result").hide();
+		    }
+		    else
+		    {
+		        console.log(query);
+
+		        let url = `http://localhost:8080/search/${query}`;
+
+		        fetch(url).then(response=>{
+		            return response.json();
+		        }).then(data => {
+
+		            console.log(data);
+
+		            let text = `<div class='list-group'>`;
+
+		            data.forEach((contact) =>{
+
+		                text+=`<a href="/user/contact/${contact.cid}/" class='list-group-item list-group-action'> ${contact.name}</a>`
+		            });
+
+		            text += `</div>`;
+
+		            $(".search-result").html(text);
+		            $(".search-result").show();
+		            
+		        });
+
+		       
+		    }
+		};
+		
+	</script>
+	
+	<!-- Sweet-Alert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+	
+		function deleteContact(cid)
+		{
+			swal({
+				  title: "Are you sure?",
+				  text: "Once deleted, you will not be able to recover.!",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    
+					  window.location="/user/delete/"+cid;
+				  } else {
+				    swal("Your contact is safe!");
+				  }
+				});
+		}
+	
+	</script>
+	
+	
+	</section>
+</body>
+</html>

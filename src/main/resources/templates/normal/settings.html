@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is profile page</title>
+</head>
+<body>
+	<section>
+			
+		<div class="container text-center w-75">
+			<div class="card mr-2 ml-2">
+				<div class="card-body">
+					
+				
+						<img src="" style="height:150px; width:150px;" class="my_profile_picture" th:src="@{'/img/'+${user.imageUrl}}" alt="profile photo" />
+						
+						
+						<h3><span th:text="${user.name}"></h3>
+						
+					<form th:action="@{/user/change-password}" method="post">	
+
+					<div class="table-responsive">
+					<table class="table">
+						<thead>
+							
+						</thead>
+						<tbody>
+						
+							<tr>
+								<th scope="row">@ID</th>
+								<td><span th:text="${'CID'+user.id}"></span></td>
+							</tr>
+						
+							<tr>
+								<th scope="row">Email</th>
+								<td><span th:text="${user.email}"></span></td>
+							</tr>
+							
+							<tr>
+								<th scope="row">Role</th>
+								<td><span th:text="${user.role}"></span></td>
+							</tr>
+							
+							<tr>
+								<th scope="row">About</th>
+								<td><span th:text="${user.about}"></span></td>
+							</tr>
+								
+								<div class="form-group">
+								<tr>
+									<th scope="row">Old Password</th>
+									<td><span><input type=password class="form-control" name="oldPassword"
+											placeholder="Enter old password"></span></td>
+								</tr>
+								</div>
+
+								<div class="form-group">
+								<tr>
+									<th scope="row">New Password</th>
+									<td><span><input type=password class="form-control" name="newPassword"
+											placeholder="Enter new password"></span></td>
+								</tr>
+								</div>
+								
+								
+							</tbody>
+				
+					</table>
+					
+							<button type="submit" class="btn btn-primary">Save</button>
+					
+					</div>
+					</form>
+					
+					
+			
+				</div>
+				
+				
+				</div>
+				
+			</div>
+			
+			
+	</section>
+</body>
+</html>

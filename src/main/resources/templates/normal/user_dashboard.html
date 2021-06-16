@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is about page</title>
+</head>
+<body>
+	<section>
+			
+			<div class="container">
+				
+				<div class="card">
+				
+					<div class="card-body">
+					
+						<div class="container text-center">
+						<img src="" style="height:200px; width:200px;" class="my_profile_picture" th:src="@{'/img/contact-logo.png'}" alt="profile photo" />
+						</div>
+						
+						
+							<h2  class="text-center font-italic">Smarter way to store your contact ....</h2>
+							 <footer class="blockquote-footer text-center mt-3">The advance of technology is based on making it fit in so that you don't really even notice it, so it's part of everyday life ... <cite title="Source Title"></cite></footer>
+							<a href="#" th:href="@{/user/add-contact}" class="card-link">Start Here</a>
+					
+					</div>
+				
+				</div>
+
+		</div>
+			
+	</section>
+</body>
+</html>
