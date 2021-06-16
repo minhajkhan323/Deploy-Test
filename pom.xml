@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.5</version>
+		<version>2.3.4.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.smart</groupId>
@@ -15,7 +15,7 @@
 	<name>smartcontactmanager</name>
 	<description>First Spring Boot project</description>
 
-	<build>
+<!-- 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -28,7 +28,7 @@
 			</plugin>
 		</plugins>
 	</build>
-
+ -->
 
 	<dependencies>
 		<dependency>
@@ -89,13 +89,13 @@
 		</dependency>
 	</dependencies>
 
-<!-- 	<build>
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build> -->
+	</build> 
 
 </project>
