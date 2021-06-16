@@ -11,6 +11,10 @@ import com.smart.entities.User;
 
 public class CustomUserDetails implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3668735178492439029L;
 	private User user;
 	
 		
@@ -22,7 +26,7 @@ public class CustomUserDetails implements UserDetails {
 	
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+	public List<SimpleGrantedAuthority> getAuthorities() {
 		
 		SimpleGrantedAuthority simpleGrantedAuthority=new SimpleGrantedAuthority(user.getRole());
 		
