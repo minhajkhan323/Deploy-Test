@@ -59,7 +59,7 @@ public class UserController {
 		// fetching user details
 		User user = userRepository.getUserByUserName(userName);
 
-		System.out.println("USER " + user);
+//		System.out.println("USER " + user);
 
 		// send user details to private dashboard after login
 		model.addAttribute("user", user);
@@ -253,9 +253,9 @@ public class UserController {
 				{
 					
 					//Delete previous pic
-					File deleteFile=new ClassPathResource("/static/img").getFile(); 
-					File file2 = new File(deleteFile,previousContact.getImage());
-					file2.delete();
+//					File deleteFile=new ClassPathResource("/static/img").getFile(); 
+//					File file2 = new File(deleteFile,previousContact.getImage());
+//					file2.delete();
 					
 					
 					//Update Profile pic

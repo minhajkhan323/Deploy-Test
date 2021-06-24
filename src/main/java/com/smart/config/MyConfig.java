@@ -47,6 +47,7 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authenticationProvider());
 	}
 
+	//Give protected routing
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
