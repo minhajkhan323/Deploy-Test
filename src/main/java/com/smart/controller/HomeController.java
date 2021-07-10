@@ -49,7 +49,7 @@ public class HomeController {
 		return "signup";
 	}
 
-	// Handler for registering user
+	// Handler for new registering user
 	@RequestMapping(value = "/do-register", method = RequestMethod.POST)
 
 	public String registerUser(@Valid @ModelAttribute("user") User user,BindingResult result1,

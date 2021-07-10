@@ -32,8 +32,8 @@
 
 							<!-- name feild -->
 							<div class="mb-3">
-								<label for="exampleInputEmail1" class="form-label">Your
-									Name</label> <input name="name" type="text" class="form-control"
+								<label for="exampleInputEmail1" class="form-label">Your Name</label>
+									<input name="name" type="text" class="form-control"
 									th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
 									id="name_field" aria-describedby="emailHelp"
 									placeholder="Enter name" required th:value="${user.name}">
